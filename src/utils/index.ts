@@ -1,36 +1,22 @@
-﻿import ImageCompressor from 'image-compressor.js';
+﻿// import { ImageCompressor } from 'image-compressor';
 //文件大小转换,kb->mb
-export function converSize(limit:number):string { 
-    let size: string = '';
-    if(limit < 0.1 * 1024){                            //小于0.1KB，则转化成B
-        size = limit.toFixed(2) + "B"
-    }else if(limit < 0.1 * 1024 * 1024){            //小于0.1MB，则转化成KB
-        size = (limit/1024).toFixed(2) + "KB"
-    }else if(limit < 0.1 * 1024 * 1024 * 1024){        //小于0.1GB，则转化成MB
-        size = (limit/(1024 * 1024)).toFixed(2) + "MB"
-    }else{                                            //其他转化成GB
-        size = (limit/(1024 * 1024 * 1024)).toFixed(2) + "GB"
-    }
- 
-    var sizeStr = size + "";                        //转成字符串
-    var index = sizeStr.indexOf(".");                    //获取小数点处的索引
-    var dou = sizeStr.substr(index + 1 ,2)            //获取小数点后两位的值
-    if(dou == "00"){                                //判断后两位是否为00，如果是则删除00               
-        return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
-    }
-    return size;
-}
+export function converSize(limit: number): string {
+  let size: string = '';
+  if (limit < 0.1 * 1024) {                            //小于0.1KB，则转化成B
+    size = limit.toFixed(2) + "B";
+  } else if (limit < 0.1 * 1024 * 1024) {            //小于0.1MB，则转化成KB
+    size = (limit / 1024).toFixed(2) + "KB";
+  } else if (limit < 0.1 * 1024 * 1024 * 1024) {        //小于0.1GB，则转化成MB
+    size = (limit / (1024 * 1024)).toFixed(2) + "MB";
+  } else {                                            //其他转化成GB
+    size = (limit / (1024 * 1024 * 1024)).toFixed(2) + "GB";
+  }
 
-export const compressImage = async (file: any) => {
-    var imageCompressor = new ImageCompressor()
-    return new Promise((resolve, reject) => {
-        imageCompressor
-            .compress(file, { quality: 0.8, maxHeight: 100, maxWidth: 100 })
-            .then((result:any) => {
-                resolve(result)
-            })
-            .catch((err:any) => {
-                reject(err)
-            })
-    })
+  var sizeStr = size + "";                        //转成字符串
+  var index = sizeStr.indexOf(".");                    //获取小数点处的索引
+  var dou = sizeStr.substr(index + 1, 2);            //获取小数点后两位的值
+  if (dou === "00") {                                //判断后两位是否为00，如果是则删除00               
+    return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2);
+  }
+  return size;
 }
