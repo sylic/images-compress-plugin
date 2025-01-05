@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "my-extension.test",
-        "title": "图片压缩工具"
+        "title": "图片压缩"
       }
     ],
     "menus": {
@@ -60,5 +60,8 @@
     "typescript": "^5.4.5",
     "webpack": "^5.92.1",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "sharp": "0.32.6"
   }
 }
